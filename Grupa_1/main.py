@@ -2,6 +2,7 @@
 from rdkit import Chem
 from rdkit.Chem import Draw
 from colorama import Fore, Style
+from termcolor import colored
 
 fenyloalanina_smiles = "NC(Cc1ccccc1)C(=O)O"
 fenyloalanina_molecule = Chem.MolFromSmiles(fenyloalanina_smiles)
@@ -20,7 +21,7 @@ hydrophobicity_scale = {
 
 
     # określenie progu hydrofobowości
-hydrophobicity_threshold = 3
+hydrophobicity_threshold = 1.6
 
 hydrophobic_aa = []
 hydrophylic_aa = []
@@ -34,20 +35,20 @@ for aa, hydrophobicity_value in hydrophobicity_scale.items():
 
     # pokolorowanie symboli aminokwasów w zalezności od ich hydrofobowości/hydrofilowości
 
+peptide_sequence = 'MYDKERHTFCIVLFIFLVYCSER'
+
+phobic_phylic_peptide_sequence = ''
+
+for i in peptide_sequence:
+    if i in hydrophobic_aa:
+        phobic_phylic_peptide_sequence += (colored(i, 'red'))
+    else:
+        phobic_phylic_peptide_sequence += (colored(i, 'blue'))
+
+print(phobic_phylic_peptide_sequence)
 
 
 
-'''
-print(f"{Fore.BLUE}Niebieski")
-
-    # przyklad kolorowej sekwencji liter
-colored_string = (
-    f"{Fore.RED}H{Fore.GREEN}e{Fore.YELLOW}l{Fore.BLUE}l{Fore.MAGENTA}o{Style.RESET_ALL}, "
-    f"{Fore.CYAN}W{Fore.RED}o{Fore.GREEN}r{Fore.YELLOW}l{Fore.BLUE}d!"
-)
-
-print(colored_string)
-'''
 # porównanie sekwencji białek, szacowanie podobieństwa
 
 
