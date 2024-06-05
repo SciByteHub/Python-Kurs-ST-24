@@ -2,7 +2,8 @@
 from rdkit import Chem
 from rdkit.Chem import Draw
 from termcolor import colored
-
+from Bio import pairwise2
+from Bio.pairwise2 import format_alignment
 
 # wyświetlanie najliczniejszego aminokwasu w białku
 
@@ -10,7 +11,7 @@ fenyloalanina_smiles = "NC(Cc1ccccc1)C(=O)O"
 fenyloalanina_molecule = Chem.MolFromSmiles(fenyloalanina_smiles)
 
 image = Draw.MolToImage(fenyloalanina_molecule, size=(300, 300))
-image.show()
+#image.show()
 
 # oznaczenie hydrofobowych i hydrofilowych fragmentów białka
 
@@ -20,7 +21,6 @@ hydrophobicity_scale = {
     'W': -0.9, 'Y': -1.3, 'P': -1.6, 'H': -3.2, 'E': -3.5,
     'Q': -3.5, 'D': -3.5, 'N': -3.5, 'K': -3.9, 'R': -4.5
 }
-
 
     # określenie progu hydrofobowości
 hydrophobicity_threshold = 1.6
@@ -49,9 +49,11 @@ for i in peptide_sequence:
 
 print(phobic_phylic_peptide_sequence)
 
+# porównanie sekwencji białek z uzyciem biopython
 
+peptide_sequence2 = "MENSDGVFCQAY"
 
-# porównanie sekwencji białek, szacowanie podobieństwa
+alignments = pairwise2.align.globalxx(peptide_sequence, peptide_sequence2)
 
-
-
+for alignment in alignments:
+    print(format_alignment(*alignment))
