@@ -1,2 +1,1 @@
-
-kk
+test dzialania gita
