@@ -1,15 +1,17 @@
-# wyświetlanie najliczniejszego aminokwasu w białku
+#biblioteki
 from rdkit import Chem
 from rdkit.Chem import Draw
-from colorama import Fore, Style
 from termcolor import colored
+
+
+# wyświetlanie najliczniejszego aminokwasu w białku
 
 fenyloalanina_smiles = "NC(Cc1ccccc1)C(=O)O"
 fenyloalanina_molecule = Chem.MolFromSmiles(fenyloalanina_smiles)
-'''
+
 image = Draw.MolToImage(fenyloalanina_molecule, size=(300, 300))
 image.show()
-'''
+
 # oznaczenie hydrofobowych i hydrofilowych fragmentów białka
 
 hydrophobicity_scale = {
