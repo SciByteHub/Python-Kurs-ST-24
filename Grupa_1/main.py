@@ -59,8 +59,6 @@ for alignment in alignments:
     print(format_alignment(*alignment))
 
 #ADA
-
-#Obliczanie ilości reszt aminokwasowych
 import os
 import requests
 import json
@@ -68,6 +66,7 @@ import joblib
 from Bio import PDB
 import numpy as np
 
+#Obliczanie ilości reszt aminokwasowych
 def ObliczLiczbaResztAminokwasowych(pdb_entry_path):
   parser=PDB.PDBParser()
   protein=parser.get_structure('bialko',pdb_entry_path)
@@ -109,11 +108,28 @@ def ObliczDlugoscBialka(pdb_entry_path):
   dlugosc = max_coord - min_coord
   DlugoscBialka=np.linalg.norm(dlugosc)
 
-#import białka
   return DlugoscBialka
-
+    
+#import białka
   pdb_entry_path="/1AKI.pdb"
   
 #Printowanie odpowiedzi
 DlugoscBialka=ObliczDlugoscBialka(pdb_entry_path)
 print(f"Dlugosc bialka: {DlugoscBialka:2f} Å")
+
+#wizualizacja białka
+pip install icn3dpy
+import icn3dpy
+
+def WizualizacjaStrukturyBialka(ID, protein_style='cylinder and plate', ligand_style='ball and stick'):
+    style = f'bialko {protein_style}; ligand {ligand_style}'
+    
+    # Tworzenie widoku 3D
+    scene = icn3dpy.view(q=ID, command=style)
+    
+    return scene
+
+# podanie ID białka i otworzenie wizualizacji
+ID = 'pdbid=5tyc'
+scene = WizualizacjaStrukturyBialka(ID)
+scene
