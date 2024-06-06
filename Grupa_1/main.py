@@ -59,6 +59,8 @@ for alignment in alignments:
     print(format_alignment(*alignment))
 
 #ADA
+
+#Obliczanie ilości reszt aminokwasowych
 import os
 import requests
 import json
@@ -84,3 +86,34 @@ pdb_entry_path="/1AKI.pdb"
 
 LiczbaResztAminokwasowych=ObliczLiczbaResztAminokwasowych(pdb_entry_path)
 print(f"Dlugosc bialka wynosi {LiczbaResztAminokwasowych} aminokwasow")
+
+#Obliczanie dlugosci bialka w angstremach
+def ObliczDlugoscBialka(pdb_entry_path):
+  parser=PDB.PDBParser()
+  protein=parser.get_structure('bialko',pdb_entry_path)
+
+#wyznaczenie "krawędzi" białka
+  min_coord = np.array([np.inf, np.inf, np.inf])
+  max_coord = np.array([-np.inf, -np.inf, -np.inf])
+
+#przeliczanie po strukturze
+  for model in protein:
+    for chain in model:
+      for residue in chain:
+        for atom in residue:
+          coord=atom.coord
+          min_coord = np.minimum(min_coord, coord)
+          max_coord = np.maximum(max_coord, coord)
+
+#wyznaczenie wektora odleglosci i jego zmierzenie
+  dlugosc = max_coord - min_coord
+  DlugoscBialka=np.linalg.norm(dlugosc)
+
+#import białka
+  return DlugoscBialka
+
+  pdb_entry_path="/1AKI.pdb"
+  
+#Printowanie odpowiedzi
+DlugoscBialka=ObliczDlugoscBialka(pdb_entry_path)
+print(f"Dlugosc bialka: {DlugoscBialka:2f} Å")
