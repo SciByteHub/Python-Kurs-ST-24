@@ -57,3 +57,30 @@ alignments = pairwise2.align.globalxx(peptide_sequence, peptide_sequence2)
 
 for alignment in alignments:
     print(format_alignment(*alignment))
+
+#ADA
+import os
+import requests
+import json
+import joblib
+from Bio import PDB
+import numpy as np
+
+def ObliczLiczbaResztAminokwasowych(pdb_entry_path):
+  parser=PDB.PDBParser()
+  protein=parser.get_structure('bialko',pdb_entry_path)
+
+#liczanie reszt aminowkasowych
+  residues=set()
+  for model in protein:
+    for chain in model:
+      for residue in chain:
+        if PDB.is_aa(residue, standard=True):
+          residues.add(residue.id)
+        
+  return len(residues)
+
+pdb_entry_path="/1AKI.pdb"
+
+LiczbaResztAminokwasowych=ObliczLiczbaResztAminokwasowych(pdb_entry_path)
+print(f"Dlugosc bialka wynosi {LiczbaResztAminokwasowych} aminokwasow")
