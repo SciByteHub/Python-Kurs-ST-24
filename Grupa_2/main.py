@@ -29,3 +29,11 @@ class Board:
     def __str__(self):
         return '\n'.join(' '.join(str(cell) for cell in row) for row in self.grid)
 
+#engine
+if __name__ == "__main__":
+    width = int(input(f"Enter width of game board: "))
+    height = int(input(f"now enter height of game board: "))
+    board = Board(width, height)
+    
+    print("Initial status of cells: ")
+    board.display()
