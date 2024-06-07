@@ -7,14 +7,36 @@ from Bio.pairwise2 import format_alignment
 
 # wyświetlanie najliczniejszego aminokwasu w białku
 
-fenyloalanina_smiles = "NC(Cc1ccccc1)C(=O)O"
-fenyloalanina_molecule = Chem.MolFromSmiles(fenyloalanina_smiles)
+aminokwasy ={
+    'fenyloalanina': "NC(Cc1ccccc1)C(=O)O",
+    'glicyna': "NCC(=O)O",
+    "alanina": "CC(C(=O)O)N",
+    "cysteina": "C(C(C(=O)O)N)S",
+    "lizyna": "C(CCN)CC(C(=O)O)N",
+    'walina': 'CC(C)C(C(=O)O)N',
+    'leucyna': 'CC(C)CC(C(=O)O)N',
+    'izoleucyna': 'CCC(C)C(C(=O)O)N',
+    'prolina': 'C1CC(NC1)C(=O)O',
+    'tyrozyna': 'NC(Cc1ccc(O)cc1)C(=O)O',
+    'tryptofan': 'NC(Cc1c[nH]c2c1cccc2)C(=O)O',
+    'seryna': 'C(O)C(C(=O)O)N',
+    'treonina': 'CC(O)C(N)C(=O)O',
+    'metionina': 'CSCCC(C(=O)O)N',
+    'asparagina': 'C(N)(=O)CC(N)C(=O)O',
+    'glutamina': 'C(CC(=O)N)C(C(=O)O)N',
+    'kwas asparaginowy': 'C(=O)(O)C(N)CC(=O)O',
+    'kwas glutaminowy': 'C(CC(=O)O)C(C(=O)O)N',
+    'arginina': 'C(C(C(=O)O)N)CCNC(=N)N',
+    'histydyna': 'C(=O)(O)C(N)C(c1cNcn1)'
+}
 
-image = Draw.MolToImage(fenyloalanina_molecule, size=(300, 300))
-#image.show()
+aa_molecule = Chem.MolFromSmiles(aminokwasy['histydyna'])
+
+image = Draw.MolToImage(aa_molecule, size=(300, 300))
+image.show()
 
 # oznaczenie hydrofobowych i hydrofilowych fragmentów białka
-
+"""
 hydrophobicity_scale = {
     'I': 4.5, 'V': 4.2, 'L': 3.8, 'F': 2.8, 'C': 2.5,
     'M': 1.9, 'A': 1.8, 'G': -0.4, 'T': -0.7, 'S': -0.8,
@@ -118,7 +140,7 @@ DlugoscBialka=ObliczDlugoscBialka(pdb_entry_path)
 print(f"Dlugosc bialka: {DlugoscBialka:2f} Å")
 
 #wizualizacja białka
-pip install icn3dpy
+
 import icn3dpy
 
 def WizualizacjaStrukturyBialka(ID, protein_style='cylinder and plate', ligand_style='ball and stick'):
@@ -133,3 +155,4 @@ def WizualizacjaStrukturyBialka(ID, protein_style='cylinder and plate', ligand_s
 ID = 'pdbid=5tyc'
 scene = WizualizacjaStrukturyBialka(ID)
 scene
+"""
