@@ -36,7 +36,7 @@ image = Draw.MolToImage(aa_molecule, size=(300, 300))
 image.show()
 
 # oznaczenie hydrofobowych i hydrofilowych fragmentów białka
-"""
+
 hydrophobicity_scale = {
     'I': 4.5, 'V': 4.2, 'L': 3.8, 'F': 2.8, 'C': 2.5,
     'M': 1.9, 'A': 1.8, 'G': -0.4, 'T': -0.7, 'S': -0.8,
@@ -45,31 +45,30 @@ hydrophobicity_scale = {
 }
 
     # określenie progu hydrofobowości
-hydrophobicity_threshold = 1.6
-
 hydrophobic_aa = []
 hydrophylic_aa = []
 
     # pętla ustalająca, jakie przy danym progu aminokwasy uwazane są za hydrofobowe lub hydrofilowe
-for aa, hydrophobicity_value in hydrophobicity_scale.items():
-    if hydrophobicity_value > hydrophobicity_threshold:
-        hydrophobic_aa.append(aa)
-    else:
-        hydrophylic_aa.append(aa)
-
     # pokolorowanie symboli aminokwasów w zalezności od ich hydrofobowości/hydrofilowości
 
-peptide_sequence = 'MYDKERHTFCIVLFIFLVYCSER'
+def FragmentyHydrofobowe(sekwencja):
+    threshold = float(input('Podaj granicę hydrofobowości: '))
+    for aa, hydrophobicity_value in hydrophobicity_scale.items():
+      if hydrophobicity_value > threshold:
+        hydrophobic_aa.append(aa)
+      else:
+        hydrophylic_aa.append(aa)
+    
+    phobic_phylic_peptide_sequence = ''
 
-phobic_phylic_peptide_sequence = ''
-
-for i in peptide_sequence:
-    if i in hydrophobic_aa:
+    for i in sekwencja:
+      if i in hydrophobic_aa:
         phobic_phylic_peptide_sequence += (colored(i, 'red'))
-    else:
+      else:
         phobic_phylic_peptide_sequence += (colored(i, 'blue'))
+    print(phobic_phylic_peptide_sequence)
 
-print(phobic_phylic_peptide_sequence)
+FragmentyHydrofobowe('MYDKERHTFCIVLFIFLVYCSER')
 
 # porównanie sekwencji białek z uzyciem biopython
 
@@ -155,4 +154,4 @@ def WizualizacjaStrukturyBialka(ID, protein_style='cylinder and plate', ligand_s
 ID = 'pdbid=5tyc'
 scene = WizualizacjaStrukturyBialka(ID)
 scene
-"""
+
