@@ -36,7 +36,7 @@ image = Draw.MolToImage(aa_molecule, size=(300, 300))
 image.show()
 
 # oznaczenie hydrofobowych i hydrofilowych fragmentów białka
-"""
+
 hydrophobicity_scale = {
     'I': 4.5, 'V': 4.2, 'L': 3.8, 'F': 2.8, 'C': 2.5,
     'M': 1.9, 'A': 1.8, 'G': -0.4, 'T': -0.7, 'S': -0.8,
@@ -154,4 +154,4 @@ def WizualizacjaStrukturyBialka(ID, protein_style='cylinder and plate', ligand_s
 ID = 'pdbid=5tyc'
 scene = WizualizacjaStrukturyBialka(ID)
 scene
-"""
+
