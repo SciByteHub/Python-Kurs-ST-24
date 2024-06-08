@@ -133,7 +133,7 @@ def FragmentyHydrofobowe(sekwencja):
 FragmentyHydrofobowe('MYDKERHTFCIVLFIFLVYCSER')
 
 # porównanie sekwencji białek z uzyciem biopython
-
+peptide_sequence = 'MYDKERHTFCIVLFIFLVYCSER'
 peptide_sequence2 = "MENSDGVFCQAY"
 
 alignments = pairwise2.align.globalxx(peptide_sequence, peptide_sequence2)
