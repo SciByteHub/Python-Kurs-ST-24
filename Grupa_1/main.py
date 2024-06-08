@@ -45,31 +45,30 @@ hydrophobicity_scale = {
 }
 
     # określenie progu hydrofobowości
-hydrophobicity_threshold = 1.6
-
 hydrophobic_aa = []
 hydrophylic_aa = []
 
     # pętla ustalająca, jakie przy danym progu aminokwasy uwazane są za hydrofobowe lub hydrofilowe
-for aa, hydrophobicity_value in hydrophobicity_scale.items():
-    if hydrophobicity_value > hydrophobicity_threshold:
-        hydrophobic_aa.append(aa)
-    else:
-        hydrophylic_aa.append(aa)
-
     # pokolorowanie symboli aminokwasów w zalezności od ich hydrofobowości/hydrofilowości
 
-peptide_sequence = 'MYDKERHTFCIVLFIFLVYCSER'
+def FragmentyHydrofobowe(sekwencja):
+    threshold = float(input('Podaj granicę hydrofobowości: '))
+    for aa, hydrophobicity_value in hydrophobicity_scale.items():
+      if hydrophobicity_value > threshold:
+        hydrophobic_aa.append(aa)
+      else:
+        hydrophylic_aa.append(aa)
+    
+    phobic_phylic_peptide_sequence = ''
 
-phobic_phylic_peptide_sequence = ''
-
-for i in peptide_sequence:
-    if i in hydrophobic_aa:
+    for i in sekwencja:
+      if i in hydrophobic_aa:
         phobic_phylic_peptide_sequence += (colored(i, 'red'))
-    else:
+      else:
         phobic_phylic_peptide_sequence += (colored(i, 'blue'))
+    print(phobic_phylic_peptide_sequence)
 
-print(phobic_phylic_peptide_sequence)
+FragmentyHydrofobowe('MYDKERHTFCIVLFIFLVYCSER')
 
 # porównanie sekwencji białek z uzyciem biopython
 
