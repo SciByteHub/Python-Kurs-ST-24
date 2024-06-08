@@ -4,8 +4,6 @@ from rdkit.Chem import Draw
 from termcolor import colored
 from Bio import pairwise2
 from Bio.pairwise2 import format_alignment
-
-#bilioteki ADRIAN
 import os
 import numpy as np
 import matplotlib.pyplot as plt
@@ -14,14 +12,10 @@ from Bio import SeqIO
 from Bio.SeqUtils.ProtParam import ProteinAnalysis
 from Bio.PDB.PDBParser import PDBParser
 from ramachandraw.utils import fetch_pdb, plot
-
-#Ada biblioteki
-import os
-import requests
 import json
 import joblib
 from Bio import PDB
-import numpy as np
+
 
 
 #os things
