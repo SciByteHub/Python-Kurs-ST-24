@@ -202,7 +202,6 @@ def WizualizacjaStrukturyBialka(pdb_entry, protein_style='cylinder and plate', l
     
     return scene
 
-# podanie ID białka i otworzenie wizualizacji
-ID = 'pdbid=5tyc'
+# Otworzenie wizualizacji
 WizualizacjaStrukturyBialka(pdb_entry)=scene
 
