@@ -21,31 +21,43 @@ class Tamagotchi:
         """)
         choice = None
         while True:
-        choice = input ("Którą skórkę wybierasz? [1 - 4]")
-        if choice == '1':
-            print ("""Wybrałeś papugę:
+            choice = input ("Którą skórkę wybierasz? [1 - 4]")
+            if choice == '1':
+                print ("""Wybrałeś papugę:
      ______ __
    {-_-_= '. `'.
-    {=_=_-  \   \
+    {=_=_-  \   |
      {_-_   |   /
       '-.   |  /    .===,
    .--.__\  |_(_,==`  ( o)'-.
-  `---.=_ `     ;      `/    \
+  `---.=_ `     ;      `/    |
       `,-_       ;    .'--') /
         {=_       ;=~`    `"`
          `//__,-=~`
          <<__ \\__
          /`)))/`)))
             """)
-            self.skin =  [;.;]
-        elif choice == '2':
-            print ("""Wybrałeś gąske:
+                self.skin =  """
+     ______ __
+   {-_-_= '. `'.
+    {=_=_-  \   |
+     {_-_   |   /
+      '-.   |  /    .===,
+   .--.__\  |_(_,==`  ( o)'-.
+  `---.=_ `     ;      `/    |
+      `,-_       ;    .'--') /
+        {=_       ;=~`    `"`
+         `//__,-=~`
+         <<__ \\__
+         /`)))/`)))"""
+            elif choice == '2':
+                print ("""Wybrałeś gąske:
                         __
                       /` ,\__
                      |    ).-'
                     / .--'
                    / /
-     ,      _.==''`  \
+     ,      _.==''`  |
    .'(  _.='         |
   {   ``  _.='       |
    {    \`     ;    /
@@ -54,35 +66,66 @@ class Tamagotchi:
         '-`\\`__
             `-._{
             """)
-            self.skin = [;.;]
-        elif choice == '3':
-            print ("""Wybrałeś świnkę:
+                self.skin = """
+                        __
+                      /` ,\__
+                     |    ).-'
+                    / .--'
+                   / /
+     ,      _.==''`  |
+   .'(  _.='         |
+  {   ``  _.='       |
+   {    \`     ;    /
+    `.   `'=..'  .='
+      `=._    .='
+        '-`\\`__
+            `-._{"""
+            elif choice == '3':
+                print ("""Wybrałeś świnkę:
             (\____/)
-            / @__@ \
+            / @__@ |
            (  (oo)  )
             `-.~~.-'
-             /    \
+             /    |
            @/      \_
           (/ /    \ \)
            WW`----'WW
             """)
-            self.skin = [;.;]
-        elif choice == '4':
-            print ("""Wybrałeś wiewiórkę:
-         _.-"""-,
-       .'  ..::. `\
+                self.skin = """
+            (\____/)
+            / @__@ |
+           (  (oo)  )
+            `-.~~.-'
+             /    |
+           @/      \_
+          (/ /    \ \)
+           WW`----'WW """
+            elif choice == '4':
+                print ("""Wybrałeś wiewiórkę:
+         _.-'''-,
+       .'  ..::. `|
       /  .::' `'` /
      / .::' .--.=;
-     | ::' /  C ..\
+     | ::' /  C ..|
      | :: |   \  _.)
-      \ ':|   /  \
+      \ ':|   /  |
        '-, \./ \)\)
           `-|   );/
              '--'-
             """)
-            self.skin = [;.;]
-        else:
-            print("Niepoprawny wybór. Spróbuj ponownie.")
+                self.skin = """
+         _.-'''-,
+       .'  ..::. `|
+      /  .::' `'` /
+     / .::' .--.=;
+     | ::' /  C ..|
+     | :: |   \  _.)
+      \ ':|   /  |
+       '-, \./ \)\)
+          `-|   );/
+             '--'-"""
+            else:
+                print("Niepoprawny wybór. Spróbuj ponownie.")
 
 # tu jest upływ czasu i wszystko będzie już działało
     def update_status(self):
