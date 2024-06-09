@@ -9,15 +9,17 @@ class Tamagotchi:
         self.energy = 50
         self.last_update_time = time.time()
 
-# Wybór skórki zwierzaka. -to można usunąć ale jak coś moe się tym zająć, bo to szybka sprawa
+# Ja się tym zajmę - Kasia
     def skin_selection(self):
         print("Wybierz swego zwierzaka:")
         print("""
-            1. [;.;] - Honorata
-            2. [;.;] - Kasia
-            3. [;.;] - Sandra
-            4. [;.;] - Weronika
+            1. [;.;] - 
+            2. [;.;] - 
+            3. [;.;] - 
+            4. [;.;] - 
               """)
+        choice = None
+        while True:
         choice = input ("Którą skórkę wybierasz? [1 - 4]")
 
 # tu jest upływ czasu i wszystko będzie już działało
