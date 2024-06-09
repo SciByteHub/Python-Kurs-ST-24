@@ -194,17 +194,15 @@ ObliczDlugoscBialka(pdb_entry)
 
 #wizualizacja białka
 
-
-
-def WizualizacjaStrukturyBialka(ID, protein_style='cylinder and plate', ligand_style='ball and stick'):
+def WizualizacjaStrukturyBialka(pdb_entry, protein_style='cylinder and plate', ligand_style='ball and stick'):
     style = f'bialko {protein_style}; ligand {ligand_style}'
     
     # Tworzenie widoku 3D
-    scene = icn3dpy.view(q=ID, command=style)
+    scene = icn3dpy.view(q=pdb_entry, command=style)
     
     return scene
 
 # podanie ID białka i otworzenie wizualizacji
 ID = 'pdbid=5tyc'
-scene = WizualizacjaStrukturyBialka(ID)
-scene
+WizualizacjaStrukturyBialka(pdb_entry)=scene
+
