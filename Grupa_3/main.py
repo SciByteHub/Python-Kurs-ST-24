@@ -104,10 +104,19 @@ class Tamagotchi:
 
 # karmienie, można dodać jakieś różne jedzonka i ile to jedzenie daje
     def feed(self):
-
+        if self.hunger < 10:
+            self.hunger += 1
+            print(f"{self.name} jest nadal głodny. Poziom głodu wynosi {self.hunger}.")
+        else:
+            print(f"{self.name} jest już najedzony.")
 
 # zabawa, można dodać zabawki i ile dana zabawka daje happiness i ile zabiera energy. Można też dodać ile czasu zabiera   
     def play(self):
+        if self.happiness < 10:
+            self.happiness += 1
+            print(f"{self.name} pobawił się. Poziom szczęścia wynosi teraz {self.happiness}.")
+        else:
+            print(f"{self.name} jest bardzo szczęśliwy.")
 
 
 # sen, można też zabierać czas i hungry  
