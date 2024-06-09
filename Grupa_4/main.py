@@ -101,4 +101,29 @@ else:
         plt.savefig('Wydatki_rokmiesiac_userdefined.png')
 
 
+#utworzone kategorie oraz ich słowa klucz
+kategorie = {
+    'dom': ['rachunki','podatki','czynsz','remont','naprawy'],
+    'transport': ['paliwo','bilet','taxi','ubezpieczenie','mechanik','eksploatacja'],
+    'rozrywka': ['kino','teatr','muzeum','restauracja','basen','wakacje','subskrypcja','hobby'],
+    'zdrowie': ['lekarstwa','lekarz','badanie'],
+    'usługi': ['fryzjer','kosmetyczka','telefon','internet'],
+    'jedzenie': ['jedzenie', 'przekąski', 'dostawa']
+}
 
+#komenda która przypisuje wydatki do odpowiedniej kategorii na podstawie jego opisu
+def przypisz_kategorie(opis_wydatku, kategorie):
+    for kategoria, slowo_klucz in kategorie.items():
+        if any(slowo in opis_wydatku.lower() for slowo in slowo_klucz):
+            return kategoria
+    return 'inne'
+
+#komenda, która czyta plik csv z opisanymi wydatkami, które mają zostać skategoryzowane
+def czytaj_i_sortuj_csv(plik):
+    df = pd.read_csv(plik, encoding='utf-8')
+    df['Kategoria'] = df['Opis'].apply(lambda x: przypisz_kategorie(x, kategorie))
+    print(df[['Opis','Kategoria']])
+    df.to_csv('posortowane_transakcje.csv', index=False)    #nowy plik z dodanymi kategoriami
+
+plik = r''    #plik czytany
+czytaj_i_sortuj_csv(plik)
