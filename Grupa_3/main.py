@@ -12,15 +12,77 @@ class Tamagotchi:
 # Ja się tym zajmę - Kasia
     def skin_selection(self):
         print("Wybierz swego zwierzaka:")
-        print("""
-            1. [;.;] - 
-            2. [;.;] - 
-            3. [;.;] - 
-            4. [;.;] - 
-              """)
+        # https://happyafterblog.blogspot.com/2012/08/zwierzatka-na-klawiaturze-ascii.html?fbclid=IwZXh0bgNhZW0CMTAAAR1avKOH-s-Yhd78nZhBHLjqx4w3ua-uQtw3lvGm90MJ_HEDwaxd8rbSZKo_aem_AecjQzrJSzuJbmIHISDX6eflVqHWETK72gMcYUQrP6cm4LpY2ikqDNaWb4_nO8JPTBNGu_ZqeXM5nWYGJ2-mPHgB
+        print(""" 
+        1. PAPUGA
+        2. GĄSKA
+        3. ŚWINKA
+        4. WIEWIÓRKA
+        """)
         choice = None
         while True:
         choice = input ("Którą skórkę wybierasz? [1 - 4]")
+        if choice == '1':
+            print ("""Wybrałeś papugę:
+     ______ __
+   {-_-_= '. `'.
+    {=_=_-  \   \
+     {_-_   |   /
+      '-.   |  /    .===,
+   .--.__\  |_(_,==`  ( o)'-.
+  `---.=_ `     ;      `/    \
+      `,-_       ;    .'--') /
+        {=_       ;=~`    `"`
+         `//__,-=~`
+         <<__ \\__
+         /`)))/`)))
+            """)
+            self.skin =  [;.;]
+        elif choice == '2':
+            print ("""Wybrałeś gąske:
+                        __
+                      /` ,\__
+                     |    ).-'
+                    / .--'
+                   / /
+     ,      _.==''`  \
+   .'(  _.='         |
+  {   ``  _.='       |
+   {    \`     ;    /
+    `.   `'=..'  .='
+      `=._    .='
+        '-`\\`__
+            `-._{
+            """)
+            self.skin = [;.;]
+        elif choice == '3':
+            print ("""Wybrałeś świnkę:
+            (\____/)
+            / @__@ \
+           (  (oo)  )
+            `-.~~.-'
+             /    \
+           @/      \_
+          (/ /    \ \)
+           WW`----'WW
+            """)
+            self.skin = [;.;]
+        elif choice == '4':
+            print ("""Wybrałeś wiewiórkę:
+         _.-"""-,
+       .'  ..::. `\
+      /  .::' `'` /
+     / .::' .--.=;
+     | ::' /  C ..\
+     | :: |   \  _.)
+      \ ':|   /  \
+       '-, \./ \)\)
+          `-|   );/
+             '--'-
+            """)
+            self.skin = [;.;]
+        else:
+            print("Niepoprawny wybór. Spróbuj ponownie.")
 
 # tu jest upływ czasu i wszystko będzie już działało
     def update_status(self):
