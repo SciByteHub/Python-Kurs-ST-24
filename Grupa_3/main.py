@@ -1,9 +1,9 @@
 import time
 
 class Tamagotchi:
-    def __init__(self, name):
+    def __init__(self, name,skin):
         self.name = name
-        self.skin = None
+        self.skin = skin
         self.hunger = 70
         self.happiness = 70
         self.energy = 70
@@ -14,9 +14,9 @@ class Tamagotchi:
         elapsed_time = current_time - self.last_update_time
         
         # zmniejszanie parametrów w zależności od upływu czasu
-        self.hunger -= elapsed_time * 0.5
-        self.happiness -= elapsed_time * 0.5
-        self.energy -= elapsed_time * 0.5
+        self.hunger -= elapsed_time * 0.3
+        self.happiness -= elapsed_time * 0.3
+        self.energy -= elapsed_time * 0.3
         
         # zabezpieczenie przed ujemnymi wartościami
         self.hunger = max(self.hunger, 0)
@@ -25,7 +25,6 @@ class Tamagotchi:
 
         self.last_update_time = current_time
         
-# karmienie ~Honorata
     def feed(self):
         self.update_status()
         food_items = {
@@ -50,33 +49,30 @@ class Tamagotchi:
         else:
             print("Niepoprawny wybór. Spróbuj ponownie.")
 
-#Ja to zrobię- Sandra
-def play(self):
-        self.update_status()
-        toys = {
-                '1':('ball', 10, 5, 2),
-                '2':('teddy bear', 15, 8, 3),
-                '3':('robot', 20, 7, 4),
-            }
-        print("Czym chcesz się pobawić?")
-        for key, (toy, fun, energy, hunger) in toys.items():
-            print(f"{key}. {toy}")
+    def play(self):
+            self.update_status()
+            toys = {
+                    '1':('ball', 10, 5, 2),
+                    '2':('teddy bear', 15, 8, 3),
+                    '3':('robot', 20, 7, 4),
+                }
+            print("Czym chcesz się pobawić?")
+            for key, (toy, fun, energy, hunger) in toys.items():
+                print(f"{key}. {toy}")
 
-        choice = input("Wybierz zabawkę: ")
-        if choice in toys:
-            toy, fun, energy, hunger = toys[choice]
-            self.happiness += fun
-            self.energy -= energy
-            self.hunger -= hunger
-            self.happiness = min(self.hunger, 100)
-            self.energy = max(self.energy, 0)
-            self.hunger = max(self.hunger, 0)
-            print(f"{self.name} pobawił się {toy}. Poziom radości wynosi {self.happiness:.1f}.")
-        else:
-            print("Niepoprawny wybór. Spróbuj ponownie.")
+            choice = input("Wybierz zabawkę: ")
+            if choice in toys:
+                toy, fun, energy, hunger = toys[choice]
+                self.happiness += fun
+                self.energy -= energy
+                self.hunger -= hunger
+                self.happiness = min(self.hunger, 100)
+                self.energy = max(self.energy, 0)
+                self.hunger = max(self.hunger, 0)
+                print(f"{self.name} pobawił się {toy}. Poziom radości wynosi {self.happiness:.1f}.")
+            else:
+                print("Niepoprawny wybór. Spróbuj ponownie.")
             
-
-# sen, można też zabierać czas i hungry  
     def sleep(self):
         self.update_status()
         while self.energy < 100:
@@ -84,16 +80,10 @@ def play(self):
             self.hunger -= 5
             print(f"{self.name} śpi. Energia: {self.energy:.1f}, Głód: {self.hunger:.1f}")
             time.sleep(3)  # tu można w sekundach ustawić ile będzie spał
-            if self.hunger >= 0:
-                self.hunger = 0
+            if self.hunger <= 20:
+                self.hunger = 20
                 print(f"{self.name} jest bardzo głodny i musi się obudzić.")
                 break
-        else:
-            print(f"{self.name} jest wypoczęty.")
-             
-            if self.hunger > 0:
-                self.hunger -= 0.1
-                time.sleep(5)
     
     def status(self):
         self.update_status()
