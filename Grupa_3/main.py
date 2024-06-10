@@ -9,145 +9,26 @@ class Tamagotchi:
         self.energy = 70
         self.last_update_time = time.time()
 
-# Ja się tym zajmę - Kasia
-    def skin_selection(self):
-        print("Wybierz swego zwierzaka:")
-        # https://happyafterblog.blogspot.com/2012/08/zwierzatka-na-klawiaturze-ascii.html?fbclid=IwZXh0bgNhZW0CMTAAAR1avKOH-s-Yhd78nZhBHLjqx4w3ua-uQtw3lvGm90MJ_HEDwaxd8rbSZKo_aem_AecjQzrJSzuJbmIHISDX6eflVqHWETK72gMcYUQrP6cm4LpY2ikqDNaWb4_nO8JPTBNGu_ZqeXM5nWYGJ2-mPHgB
-        print(""" 
-        1. PAPUGA
-        2. GĄSKA
-        3. ŚWINKA
-        4. WIEWIÓRKA
-        """)
-        choice = None
-        while True:
-            choice = input ("Którą skórkę wybierasz? [1 - 4]")
-            if choice == '1':
-                print ("""Wybrałeś papugę:
-     ______ __
-   {-_-_= '. `'.
-    {=_=_-  \   |
-     {_-_   |   /
-      '-.   |  /    .===,
-   .--.__\  |_(_,==`  ( o)'-.
-  `---.=_ `     ;      `/    |
-      `,-_       ;    .'--') /
-        {=_       ;=~`    `"`
-         `//__,-=~`
-         <<__ \\__
-         /`)))/`)))
-            """)
-                self.skin =  """
-     ______ __
-   {-_-_= '. `'.
-    {=_=_-  \   |
-     {_-_   |   /
-      '-.   |  /    .===,
-   .--.__\  |_(_,==`  ( o)'-.
-  `---.=_ `     ;      `/    |
-      `,-_       ;    .'--') /
-        {=_       ;=~`    `"`
-         `//__,-=~`
-         <<__ \\__
-         /`)))/`)))"""
-            elif choice == '2':
-                print ("""Wybrałeś gąske:
-                        __
-                      /` ,\__
-                     |    ).-'
-                    / .--'
-                   / /
-     ,      _.==''`  |
-   .'(  _.='         |
-  {   ``  _.='       |
-   {    \`     ;    /
-    `.   `'=..'  .='
-      `=._    .='
-        '-`\\`__
-            `-._{
-            """)
-                self.skin = """
-                        __
-                      /` ,\__
-                     |    ).-'
-                    / .--'
-                   / /
-     ,      _.==''`  |
-   .'(  _.='         |
-  {   ``  _.='       |
-   {    \`     ;    /
-    `.   `'=..'  .='
-      `=._    .='
-        '-`\\`__
-            `-._{"""
-            elif choice == '3':
-                print ("""Wybrałeś świnkę:
-            (\____/)
-            / @__@ |
-           (  (oo)  )
-            `-.~~.-'
-             /    |
-           @/      \_
-          (/ /    \ \)
-           WW`----'WW
-            """)
-                self.skin = """
-            (\____/)
-            / @__@ |
-           (  (oo)  )
-            `-.~~.-'
-             /    |
-           @/      \_
-          (/ /    \ \)
-           WW`----'WW """
-            elif choice == '4':
-                print ("""Wybrałeś wiewiórkę:
-         _.-'''-,
-       .'  ..::. `|
-      /  .::' `'` /
-     / .::' .--.=;
-     | ::' /  C ..|
-     | :: |   \  _.)
-      \ ':|   /  |
-       '-, \./ \)\)
-          `-|   );/
-             '--'-
-            """)
-                self.skin = """
-         _.-'''-,
-       .'  ..::. `|
-      /  .::' `'` /
-     / .::' .--.=;
-     | ::' /  C ..|
-     | :: |   \  _.)
-      \ ':|   /  |
-       '-, \./ \)\)
-          `-|   );/
-             '--'-"""
-            else:
-                print("Niepoprawny wybór. Spróbuj ponownie.")
-
-# tu jest upływ czasu i wszystko będzie już działało
+# upływ czasu - Kasia
     def update_status(self):
         current_time = time.time()
         elapsed_time = current_time - self.last_update_time
         
-        # Zmniejszanie parametrów w zależności od upływu czasu
+        # zmniejszanie parametrów w zależności od upływu czasu
         self.hunger -= elapsed_time * 0.5
         self.happiness -= elapsed_time * 0.5
         self.energy -= elapsed_time * 0.5
         
-        # Zabezpieczenie przed ujemnymi wartościami
+        # zabezpieczenie przed ujemnymi wartościami
         self.hunger = max(self.hunger, 0)
         self.happiness = max(self.happiness, 0)
         self.energy = max(self.energy, 0)
-        
+
         self.last_update_time = current_time
         
-
-# karmienie, można dodać jakieś różne jedzonka i ile to jedzenie daje
-# Ja mogę się tym, zająć ~Honorata
+# karmienie ~Honorata
     def feed(self):
+        self.update_status()
         food_items = {
             '1': ('Banan', 10),
             '2': ('Jabłko', 10),
@@ -166,7 +47,7 @@ class Tamagotchi:
             food, value = food_items[choice]
             self.hunger += value
             self.hunger = min(self.hunger, 100)
-            print(f"{self.name} zjadł {food}. Poziom głodu wynosi {self.hunger}.")
+            print(f"{self.name} zjadł {food}. Poziom głodu wynosi {self.hunger:.1f}.")
         else:
             print("Niepoprawny wybór. Spróbuj ponownie.")
 
