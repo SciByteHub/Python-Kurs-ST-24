@@ -4,9 +4,9 @@ class Tamagotchi:
     def __init__(self, name):
         self.name = name
         self.skin = None
-        self.hunger = 50
-        self.happiness = 50
-        self.energy = 50
+        self.hunger = 70
+        self.happiness = 70
+        self.energy = 70
         self.last_update_time = time.time()
 
 # Ja się tym zajmę - Kasia
@@ -172,8 +172,8 @@ class Tamagotchi:
 
 # zabawa, można dodać zabawki i ile dana zabawka daje happiness i ile zabiera energy. Można też dodać ile czasu zabiera   
     def play(self):
-        if self.happiness < 10:
-            self.happiness += 1
+        if self.happiness < 100:
+            self.happiness += 10
             print(f"{self.name} pobawił się. Poziom szczęścia wynosi teraz {self.happiness}.")
         else:
             print(f"{self.name} jest bardzo szczęśliwy.")
