@@ -1,4 +1,4 @@
-#biblioteki
+# biblioteki
 from rdkit import Chem
 from rdkit.Chem import Draw
 from termcolor import colored
@@ -16,7 +16,8 @@ import json
 import joblib
 from Bio import PDB
 import icn3dpy
-
+from IPython.display import display
+import py3Dmol
 
 aminokwasy ={
     'F': "NC(Cc1ccccc1)C(=O)O",
@@ -193,5 +194,5 @@ def WizualizacjaStrukturyBialka(pdb_entry, protein_style='cylinder and plate', l
     return scene
 
 # Otworzenie wizualizacji
-scene=WizualizacjaStrukturyBialka(pdb_entry)
-
+scene=WizualizacjaStrukturyBialka(f"pdbid={pdb_entry}")
+display(scene)
