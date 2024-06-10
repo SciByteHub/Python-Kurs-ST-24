@@ -9,7 +9,6 @@ class Tamagotchi:
         self.energy = 70
         self.last_update_time = time.time()
 
-# upływ czasu - Kasia
     def update_status(self):
         current_time = time.time()
         elapsed_time = current_time - self.last_update_time
@@ -51,7 +50,6 @@ class Tamagotchi:
         else:
             print("Niepoprawny wybór. Spróbuj ponownie.")
 
-# zabawa, można dodać zabawki i ile dana zabawka daje happiness i ile zabiera energy. Można też dodać ile czasu zabiera 
 #Ja to zrobię- Sandra
 class Toy:
     def __init__(self_name, happiness_boost, energy_cost, play_time):
@@ -72,7 +70,7 @@ class Toy:
             self.energy -= toy.energy_cost
             if self.happiness < 100:
             self.happiness += 10
-            print(f"{self.name} pobawił się {toy.name}. Poziom szczęścia wynosi teraz {self.hapiness}")
+            print(f"{self.name} pobawił się {toy.name}. Poziom szczęścia wynosi teraz {self.hapiness:.1f}")
         else:
             print(f"{self.name} jest już bardzo szczęśliwy.")
             
@@ -83,7 +81,7 @@ class Toy:
         while self.energy < 100:
             self.energy += 10
             self.hunger += 5
-            print(f"{self.name} śpi. Energia: {self.energy}, Głód: {self.hunger}")
+            print(f"{self.name} śpi. Energia: {self.energy:.1f}, Głód: {self.hunger:.1f}")
             time.sleep(3)  # tu można w sekundach ustawić ile będzie spał
             if self.hunger >= 100:
                 self.hunger = 100
@@ -92,10 +90,9 @@ class Toy:
         else:
             print(f"{self.name} jest wypoczęty.")
 
-# tu chyba nic nie trzeba dodawać
     def status(self):
         self.update_status()
-        print(f"Status {self.name}: Głód: {self.hunger:.2f}, Szczęście: {self.happiness:.2f}, Energia: {self.energy:.2f}")
+        print(f"Status {self.name}: Głód: {self.hunger:.1f}, Szczęście: {self.happiness:.1f}, Energia: {self.energy:.1f}")
 
 def main():
     def animal_name():
@@ -120,20 +117,6 @@ def main():
         while True:
             choice = input ("Którą skórkę wybierasz? [1 - 4]")
             if choice == '1':
-                print ("""Wybrałeś papugę:
-     ______ __
-   {-_-_= '. `'.
-    {=_=_-  \   |
-     {_-_   |   /
-      '-.   |  /    .===,
-   .--.__\  |_(_,==`  ( o)'-.
-  `---.=_ `     ;      `/    |
-      `,-_       ;    .'--') /
-        {=_       ;=~`    `"`
-         `//__,-=~`
-         <<__ \\__
-         /`)))/`)))
-            """)
                 skin =  """
      ______ __
    {-_-_= '. `'.
@@ -147,23 +130,9 @@ def main():
          `//__,-=~`
          <<__ \\__
          /`)))/`)))"""
+                print (f"Wybrałeś papugę: \n{skin}")
                 return skin
             elif choice == '2':
-                print ("""Wybrałeś gąske:
-                        __
-                      /` ,\__
-                     |    ).-'
-                    / .--'
-                   / /
-     ,      _.==''`  |
-   .'(  _.='         |
-  {   ``  _.='       |
-   {    \`     ;    /
-    `.   `'=..'  .='
-      `=._    .='
-        '-`\\`__
-            `-._{
-            """)
                 skin = """
                         __
                       /` ,\__
@@ -178,18 +147,9 @@ def main():
       `=._    .='
         '-`\\`__
             `-._{"""
+                print (f"Wybrałeś gąske: \n{skin}")
                 return skin
             elif choice == '3':
-                print ("""Wybrałeś świnkę:
-            (\____/)
-            / @__@ |
-           (  (oo)  )
-            `-.~~.-'
-             /    |
-           @/      \_
-          (/ /    \ \)
-           WW`----'WW
-            """)
                 skin = """
             (\____/)
             / @__@ |
@@ -199,20 +159,9 @@ def main():
            @/      \_
           (/ /    \ \)
            WW`----'WW """
+                print (f"Wybrałeś świnkę: \n{skin}")
                 return skin
             elif choice == '4':
-                print ("""Wybrałeś wiewiórkę:
-         _.-'''-,
-       .'  ..::. `|
-      /  .::' `'` /
-     / .::' .--.=;
-     | ::' /  C ..|
-     | :: |   \  _.)
-      \ ':|   /  |
-       '-, \./ \)\)
-          `-|   );/
-             '--'-
-            """)
                 skin = """
          _.-'''-,
        .'  ..::. `|
@@ -224,6 +173,7 @@ def main():
        '-, \./ \)\)
           `-|   );/
              '--'-"""
+                print (f"Wybrałeś wiewiórkę: \n{skin}")
                 return skin
             else:
                 print("Niepoprawny wybór. Spróbuj ponownie.")
