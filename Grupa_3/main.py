@@ -53,6 +53,19 @@ class Tamagotchi:
 
 # zabawa, można dodać zabawki i ile dana zabawka daje happiness i ile zabiera energy. Można też dodać ile czasu zabiera 
 #Ja to zrobię- Sandra
+class Toy:
+    def __init__(self_name, happiness_boost, energy_cost, play_time):
+        self.name = name
+        self.happiness_boost = happiness_boost
+        self.energy_cost = energy_cost
+        self.play_time = play_time
+
+    def create_toys():
+    return [
+        Toy('ball', 10, 5, 2),
+        Toy('teddy bear', 15, 10, 3),
+        Toy('robot', 20, 15, 4),
+    ]
     def play(self):
         if self.energy >= toy.energy_cost
             self.happiness += toy.happiness_boost
@@ -62,20 +75,7 @@ class Tamagotchi:
             print(f"{self.name} pobawił się {toy.name}. Poziom szczęścia wynosi teraz {self.hapiness}")
         else:
             print(f"{self.name} jest już bardzo szczęśliwy.")
-class Toy:
-    def __init__(self_name, happiness_boost, energy_cost, play_time):
-        self.name = name
-        self.happiness_boost = happiness_boost
-        self.energy_cost = energy_cost
-        self.play_time = play_time
-
-def create_toys():
-    return [
-        Toy('ball', 10, 5, 2),
-        Toy('teddy bear', 15, 10, 3),
-        Toy('robot', 20, 15, 4),
-    ]
-
+            
 
 # sen, można też zabierać czas i hungry  
     def sleep(self):
