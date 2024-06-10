@@ -193,5 +193,5 @@ def WizualizacjaStrukturyBialka(pdb_entry, protein_style='cylinder and plate', l
     return scene
 
 # Otworzenie wizualizacji
-WizualizacjaStrukturyBialka(pdb_entry)=scene
+scene=WizualizacjaStrukturyBialka(pdb_entry)
 
