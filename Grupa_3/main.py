@@ -170,13 +170,30 @@ class Tamagotchi:
         else:
             print("Niepoprawny wybór. Spróbuj ponownie.")
 
-# zabawa, można dodać zabawki i ile dana zabawka daje happiness i ile zabiera energy. Można też dodać ile czasu zabiera   
+# zabawa, można dodać zabawki i ile dana zabawka daje happiness i ile zabiera energy. Można też dodać ile czasu zabiera 
+#Ja to zrobię- Sandra
     def play(self):
-        if self.happiness < 100:
+        if self.energy >= toy.energy_cost
+            self.happiness += toy.happiness_boost
+            self.energy -= toy.energy_cost
+            if self.happiness < 100:
             self.happiness += 10
-            print(f"{self.name} pobawił się. Poziom szczęścia wynosi teraz {self.happiness}.")
+            print(f"{self.name} pobawił się {toy.name}. Poziom szczęścia wynosi teraz {self.hapiness}")
         else:
-            print(f"{self.name} jest bardzo szczęśliwy.")
+            print(f"{self.name} jest już bardzo szczęśliwy.")
+class Toy:
+    def __init__(self_name, happiness_boost, energy_cost, play_time):
+        self.name = name
+        self.happiness_boost = happiness_boost
+        self.energy_cost = energy_cost
+        self.play_time = play_time
+
+def create_toys():
+    return [
+        Toy('ball', 10, 5, 2),
+        Toy('teddy bear', 15, 10, 3),
+        Toy('robot', 20, 15, 4),
+    ]
 
 
 # sen, można też zabierać czas i hungry  
