@@ -181,6 +181,18 @@ class Tamagotchi:
 
 # sen, można też zabierać czas i hungry  
     def sleep(self):
+        self.update_status()
+        while self.energy < 100:
+            self.energy += 10
+            self.hunger += 5
+            print(f"{self.name} śpi. Energia: {self.energy}, Głód: {self.hunger}")
+            time.sleep(3)  # tu można w sekundach ustawić ile będzie spał
+            if self.hunger >= 100:
+                self.hunger = 100
+                print(f"{self.name} jest bardzo głodny i musi się obudzić.")
+                break
+        else:
+            print(f"{self.name} jest wypoczęty.")
 
 # tu chyba nic nie trzeba dodawać
     def status(self):
