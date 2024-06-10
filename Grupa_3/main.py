@@ -146,12 +146,29 @@ class Tamagotchi:
         
 
 # karmienie, można dodać jakieś różne jedzonka i ile to jedzenie daje
+# Ja mogę się tym, zająć ~Honorata
     def feed(self):
-        if self.hunger < 10:
-            self.hunger += 1
-            print(f"{self.name} jest nadal głodny. Poziom głodu wynosi {self.hunger}.")
+        food_items = {
+            '1': ('Banan', 10),
+            '2': ('Jabłko', 10),
+            '3': ('Hamburger', 20),
+            '4': ('Sałatka', 15),
+            '5': ('Winogrono', 10),
+            '6': ('Sushi',25)
+        }
+        
+        print("Co chcesz dać do jedzenia?")
+        for key, (food, value) in food_items.items():
+            print(f"{key}. {food}")
+
+        choice = input("Wybierz jedzenie: ")
+        if choice in food_items:
+            food, value = food_items[choice]
+            self.hunger += value
+            self.hunger = min(self.hunger, 100)
+            print(f"{self.name} zjadł {food}. Poziom głodu wynosi {self.hunger}.")
         else:
-            print(f"{self.name} jest już najedzony.")
+            print("Niepoprawny wybór. Spróbuj ponownie.")
 
 # zabawa, można dodać zabawki i ile dana zabawka daje happiness i ile zabiera energy. Można też dodać ile czasu zabiera   
     def play(self):
