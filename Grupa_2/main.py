@@ -65,8 +65,7 @@ if __name__ == "__main__":
         except ValueError as error:
             print(f"Invalid input: {error}. Please enter positive integer values")   
     
-    board = Board(width, height)
-            
+    board = Board(width, height)   
     print("Initial status of cells: ")
     board.display()
     

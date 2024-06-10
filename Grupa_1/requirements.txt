@@ -1,0 +1,20 @@
+# biblioteki
+from rdkit import Chem
+from rdkit.Chem import Draw
+from termcolor import colored
+from Bio import pairwise2
+from Bio.pairwise2 import format_alignment
+import os
+import numpy as np
+import matplotlib.pyplot as plt
+import requests
+from Bio import SeqIO
+from Bio.SeqUtils.ProtParam import ProteinAnalysis
+from Bio.PDB.PDBParser import PDBParser
+from ramachandraw.utils import fetch_pdb, plot
+import json
+import joblib
+from Bio import PDB
+import icn3dpy
+from IPython.display import display
+import py3Dmol
