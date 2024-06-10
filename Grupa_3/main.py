@@ -89,7 +89,11 @@ class Toy:
                 break
         else:
             print(f"{self.name} jest wypoczęty.")
-
+             
+            if self.hunger > 0:
+                self.hunger -= 0.1
+                time.sleep(5)
+    
     def status(self):
         self.update_status()
         print(f"Status {self.name}: Głód: {self.hunger:.1f}, Szczęście: {self.happiness:.1f}, Energia: {self.energy:.1f}")
