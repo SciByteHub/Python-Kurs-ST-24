@@ -93,15 +93,15 @@ class Tamagotchi:
 def main():
     def animal_name():
         while True:
-            name = input("Podaj imię swojego Tamagotchi: ").strip() #wczytuje imię zwierzęcia od użytkownika i usuwa wszelkie wiodące i końcowe białe znaki za pomocą strip().
+            name = input("\nPodaj imię swojego Tamagotchi: ").strip() #wczytuje imię zwierzęcia od użytkownika i usuwa wszelkie wiodące i końcowe białe znaki za pomocą strip().
             if name.isalpha() and len(name) > 0: # sprawdza, czy imię zawiera tylko litery (alfabetyczne) i ma długość większą niż 0
-                print(f"Jego imię to: {name}")
+                print(f"\nJego imię to: {name}")
                 return name
             else:
                 print("Błąd: Imię musi zawierać przynajmniej jedną literę i nie może być pustym łańcuchem. Spróbuj ponownie.")
 
     def skin_selection():
-        print("Wybierz swego zwierzaka:")
+        print("\nWybierz swego zwierzaka:")
         # https://happyafterblog.blogspot.com/2012/08/zwierzatka-na-klawiaturze-ascii.html?fbclid=IwZXh0bgNhZW0CMTAAAR1avKOH-s-Yhd78nZhBHLjqx4w3ua-uQtw3lvGm90MJ_HEDwaxd8rbSZKo_aem_AecjQzrJSzuJbmIHISDX6eflVqHWETK72gMcYUQrP6cm4LpY2ikqDNaWb4_nO8JPTBNGu_ZqeXM5nWYGJ2-mPHgB
         print(""" 
         1. PAPUGA
