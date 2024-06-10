@@ -117,6 +117,8 @@ def przypisz_kategorie(opis_wydatku, kategorie):
         if any(slowo in opis_wydatku.lower() for slowo in slowo_klucz):
             return kategoria
     return 'inne'
+    
+#sprawdzanie czy został przekroczony limit od 122 do do 185
 
 #komenda, która czyta plik csv z opisanymi wydatkami, które mają zostać skategoryzowane
 def czytaj_i_sortuj_csv(plik):
@@ -124,6 +126,65 @@ def czytaj_i_sortuj_csv(plik):
     df['Kategoria'] = df['Opis'].apply(lambda x: przypisz_kategorie(x, kategorie))
     print(df[['Opis','Kategoria']])
     df.to_csv('posortowane_transakcje.csv', index=False)    #nowy plik z dodanymi kategoriami
+
+# Wczytanie pliku z transakcjami
+def czytaj_i_sortuj_csv(plik):
+    df = pd.read_csv(plik, encoding='utf-8')
+    df['Data'] = pd.to_datetime(df['Data'])
+    df['Kategoria'] = df['Opis'].apply(lambda x: przypisz_kategorie(x, kategorie))
+    return df
+
+# Funkcja do obliczenia wydatków w danym miesiącu dla danej kategorii
+def calculate_monthly_expenses(df, year, month, category):
+    monthly_expenses = df[(df['Data'].dt.year == year) & (df['Data'].dt.month == month) & (df['Typ Transakcji'] == 'Wydatek')]
+    if category != 'Wszystkie':
+        monthly_expenses = monthly_expenses[monthly_expenses['Kategoria'] == category]
+    total_expenses = monthly_expenses['Kwota'].sum()
+    return total_expenses
+
+# Funkcja do sprawdzenia, czy wydatki przekroczyły limit dla każdego miesiąca
+def check_budget_limit_for_year(file_path, year, limit, category):
+    df = czytaj_i_sortuj_csv(file_path)
+    
+    for month in range(1, 13):
+        total_expenses = calculate_monthly_expenses(df, year, month, category)
+        if total_expenses > limit:
+            print(f"Alert: Wydatki w miesiącu {month}/{year} dla kategorii '{category}' przekroczyły zadany limit! Suma wydatków: {total_expenses} zł")
+        else:
+            print(f"Wydatki w miesiącu {month}/{year} dla kategorii '{category}' są w ramach limitu. Suma wydatków: {total_expenses} zł")
+
+# Funkcja do pobrania unikalnych kategorii z pliku CSV
+def get_unique_categories(file_path):
+    df = czytaj_i_sortuj_csv(file_path)
+    categories = df['Kategoria'].unique().tolist()
+    categories.append('Wszystkie')
+    return categories
+
+# Funkcja pytająca użytkownika o limit i kategorię
+def get_user_input(file_path):
+    year = int(input("Podaj rok (YYYY): "))
+    limit = float(input("Podaj limit wydatków (zł): "))
+    categories = get_unique_categories(file_path)
+    
+    print("Dostępne kategorie: ")
+    for category in categories:
+        print(f"- {category}")
+    
+    category = input("Podaj kategorię: ")
+    while category not in categories:
+        print("Błędna kategoria. Spróbuj ponownie.")
+        category = input("Podaj kategorię: ")
+    
+    return year, limit, category
+
+# Ścieżka do pliku CSV (dostosuj zgodnie z lokalizacją pliku)
+file_path = 'testowe_transakcje.csv'  # Przykładowa ścieżka, dostosuj zgodnie z lokalizacją pliku
+
+# Pobranie danych od użytkownika
+year, limit, category = get_user_input(file_path)
+
+# Sprawdzenie wydatków dla każdego miesiąca w roku
+check_budget_limit_for_year(file_path, year, limit, category)
 
 plik = r''    #plik czytany
 czytaj_i_sortuj_csv(plik)
