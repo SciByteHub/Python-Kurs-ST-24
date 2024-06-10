@@ -55,31 +55,38 @@ class Board:
 #engine
 if __name__ == "__main__":
     print(f"Hello user ! Welcome to the Conway Game Of Life")
-    width = int(input(f"Enter width of game board: "))
-    height = int(input(f"now enter height of game board: "))
-    board = Board(width, height)
+    while True:
+        try:
+            width = int(input(f"Enter width of game board: "))
+            height = int(input(f"now enter height of game board: "))
+            if width <= 0 or height <= 0:
+                raise ValueError("Width and height must be positive integers")
+            break
+        except ValueError as error:
+            print(f"Invalid input: {error}. Please enter positive integer values")   
     
+    board = Board(width, height)
+            
     print("Initial status of cells: ")
     board.display()
     
     while True:
-        # command = input((f"In a moment game of life will begin, if you would like to quit the game press ctrl + c at once. Begin ? (yes/no): "))
-        # if command.lower() == "yes":
-            # while True:
-                
+        command = input((f"In a moment game of life will begin, if you would like to quit the game press ctrl + c at once. Begin ? (yes/no): "))
+        if command.lower() == "yes":
+            while True:
                 print(f"\n next generation: ")
                 board.update_board()
                 board.display()
-                time.sleep(5)
-        #         update = input(f"Press ENTER if you wish to continue or q to quit the game: ")
-        #         if update == 'q':
-        #             print("Exiting the game. Goodbye!")
-        #             break
-        # elif command == 'q' or command == 'no':
-        #     print("Exiting the game. Goodbye!")
-        #     break
-        # else:
-        #     print("Invalid input. Please type 'yes' to start or 'q' to quit.")
+                time.sleep(2)
+                update = input(f"Press ENTER if you wish to continue or q to quit the game: ")
+                if update == 'q':
+                    print("Exiting the game. Goodbye!")
+                    exit(0)
+        elif command == 'q' or command == 'no':
+            print("Exiting the game. Goodbye!")
+            exit(0)
+        else:
+            print("Invalid input. Please type 'yes' to start or 'q' to quit.")
     
         
         
