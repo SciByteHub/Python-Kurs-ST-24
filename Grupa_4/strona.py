@@ -23,13 +23,13 @@ label1 = tk.Label(frame, text="Śledź swoje wpływy i wydatki ", bg="misty rose
 label1.grid(column=7, row=1)
 
 def roczne_wydatki():
-    print("cos")
+    ###### tutaj powinien byc wykres
 
 btn = tk.Button(frame, text ='Zobacz swoje wydatki roczne', command = roczne_wydatki, pady=10)
 btn.grid(column=7, row=2)
 
 def miesieczne_wydatki():
-    print("dd")
+     ###### tutaj powinien byc wykres
 
 btn = tk.Button(frame, text ='Zobacz swoje miesięczne wydatki', command = miesieczne_wydatki, pady=10)
 btn.grid(column=7, row=5)
