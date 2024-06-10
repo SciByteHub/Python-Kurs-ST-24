@@ -51,28 +51,29 @@ class Tamagotchi:
             print("Niepoprawny wybór. Spróbuj ponownie.")
 
 #Ja to zrobię- Sandra
-class Toy:
-    def __init__(self_name, happiness_boost, energy_cost, play_time):
-        self.name = name
-        self.happiness_boost = happiness_boost
-        self.energy_cost = energy_cost
-        self.play_time = play_time
+def play(self):
+        self.update_status()
+        toys = {
+                '1':('ball', 10, 5, 2),
+                '2':('teddy bear', 15, 8, 3),
+                '3':('robot', 20, 7, 4),
+            }
+        print("Czym chcesz się pobawić?")
+        for key, (toy, fun, energy, hunger) in toys.items():
+            print(f"{key}. {toy}")
 
-    def create_toys():
-    return [
-        Toy('ball', 10, 5, 2),
-        Toy('teddy bear', 15, 10, 3),
-        Toy('robot', 20, 15, 4),
-    ]
-    def play(self):
-        if self.energy >= toy.energy_cost
-            self.happiness += toy.happiness_boost
-            self.energy -= toy.energy_cost
-            if self.happiness < 100:
-            self.happiness += 10
-            print(f"{self.name} pobawił się {toy.name}. Poziom szczęścia wynosi teraz {self.hapiness:.1f}")
+        choice = input("Wybierz zabawkę: ")
+        if choice in toys:
+            toy, fun, energy, hunger = toys[choice]
+            self.happiness += fun
+            self.energy -= energy
+            self.hunger -= hunger
+            self.happiness = min(self.hunger, 100)
+            self.energy = max(self.energy, 0)
+            self.hunger = max(self.hunger, 0)
+            print(f"{self.name} pobawił się {toy}. Poziom radości wynosi {self.happiness:.1f}.")
         else:
-            print(f"{self.name} jest już bardzo szczęśliwy.")
+            print("Niepoprawny wybór. Spróbuj ponownie.")
             
 
 # sen, można też zabierać czas i hungry  
