@@ -80,11 +80,11 @@ class Toy:
         self.update_status()
         while self.energy < 100:
             self.energy += 10
-            self.hunger += 5
+            self.hunger -= 5
             print(f"{self.name} śpi. Energia: {self.energy:.1f}, Głód: {self.hunger:.1f}")
             time.sleep(3)  # tu można w sekundach ustawić ile będzie spał
-            if self.hunger >= 100:
-                self.hunger = 100
+            if self.hunger >= 0:
+                self.hunger = 0
                 print(f"{self.name} jest bardzo głodny i musi się obudzić.")
                 break
         else:
