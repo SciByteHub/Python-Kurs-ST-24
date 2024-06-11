@@ -52,8 +52,8 @@ class Tamagotchi:
     def play(self):
         self.update_status()
         toys = {
-                '1':('ball', 10, 5, 2),
-                '2':('teddy bear', 15, 8, 3),
+                '1':('piłka', 10, 5, 2),
+                '2':('miś', 15, 8, 3),
                 '3':('robot', 20, 7, 4),
             }
         print("Czym chcesz się pobawić?")
