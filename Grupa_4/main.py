@@ -126,7 +126,8 @@ kategorie = {
     'rozrywka': ['kino','teatr','muzeum','restauracja','basen','wakacje','subskrypcja','hobby'],
     'zdrowie': ['lekarstwa','lekarz','badanie'],
     'usługi': ['fryzjer','kosmetyczka','telefon','internet'],
-    'jedzenie': ['jedzenie', 'przekąski', 'dostawa']
+    'jedzenie': ['jedzenie', 'przekąski', 'dostawa'],
+    'wpłata': ['pensja','świadczenie', 'stypendium', 'gotówka']
 }
 
 #komenda która przypisuje wydatki do odpowiedniej kategorii na podstawie jego opisu
