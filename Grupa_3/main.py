@@ -185,7 +185,7 @@ def main():
         print("3. Połóż spać")
         print("4. Sprawdź status")
         print("5. Zakończ")
-        if (pet.hunger < 20 and pet.hunger >= 0) or (pet.happiness < 20 and pet.happiness >= 0) or (pet.energy < 20 and pet.energy >= 0):
+        if (pet.hunger < 20 and pet.hunger > 0) or (pet.happiness < 20 and pet.happiness > 0) or (pet.energy < 20 and pet.energy > 0):
             print (skin)
             print ("Jestem nieszczęśliwy :<")
             pet.status()
