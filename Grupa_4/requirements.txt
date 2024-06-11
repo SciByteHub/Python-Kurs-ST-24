@@ -2,3 +2,5 @@ pandas
 tkinter
 numpy
 pillow
+matplotlib
+seaborn
