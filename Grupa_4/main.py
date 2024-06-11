@@ -26,43 +26,62 @@ plt.xlabel('Kategoria')
 plt.ylabel('Kwota')
 plt.title('Suma wydatków w poszczegolnych kategoriach ')
 plt.savefig('Wykres_suma_wydatków_kategoria.png')
-#nowy data frame do liniowego
+#nowy data frame do liniowego z ujemnymi
 data['Data'] = pd.to_datetime(data['Data'])
 do_liniowego = c1.groupby(['Kategoria', 'Data']).sum()['Kwota'].reset_index()
 do_liniowego.sort_values(by=['Data'], inplace=True)
+#nowy data frame do liniowego bez ujemnych
+data['Data'] = pd.to_datetime(data['Data'])
+do_liniowego_2 = c1.groupby(['Kategoria', 'Data']).sum()['Kwota'].reset_index()
+do_liniowego_2.sort_values(by=['Data'], inplace=True)
+do_liniowego_2
+
 #Tworzenie wykresu #2
 plt.figure(figsize=(12, 8))
+do_liniowego['Kwota'][2] = -180
+#print(do_liniowego['Sumaryczny'])
+
+do_liniowego['Sumaryczny'] = do_liniowego['Kwota'].cumsum() ## Sumaryczny budzet
+## Sumaryczny jest plotowany pierwszy, bo obejmuje caly zakres dat
+plt.plot(do_liniowego.sort_values(by='Data')['Data'], do_liniowego.sort_values(by='Data')['Sumaryczny'], color="red", linewidth=2.5)
+
+
 # Przechodzenie przez kategorie
 for kategoria in do_liniowego['Kategoria'].unique():
     # Wybranie danych dla danej kategorii
     dane_kategorii = do_liniowego[do_liniowego['Kategoria'] == kategoria]
 
     # Tworzenie wykresów
-    plt.plot(dane_kategorii['Data'], dane_kategorii['Kwota'], label=kategoria)
+    ## dodanie wykresu punktowego, bo dla jednego punktu nie zostanie stworzony wykres liniowy
+    ## a to pomineloby kategorie Rozrywka w tej sytuacji
+    plt.plot(dane_kategorii['Data'], dane_kategorii['Kwota'], label=kategoria, marker='o')
+    ## Poniewaz mamy juz legende z polecenia powyzej, tutaj ja "wylaczamy" przez label='_nolegend'
+    plt.plot(dane_kategorii['Data'], dane_kategorii['Kwota'], label='_nolegend_')
+
 
 plt.title('Zmiana wydatków przeznaczonych na poszczególne kategorie w czasie')
 plt.xlabel('Data')
 plt.ylabel('Kwota')
 plt.legend()
-plt.savefig('Wykres_Zminana_wydatków.png')
+plt.show()
 #Wykres numer #3
-do_liniowego['Data'] = pd.to_datetime(do_liniowego['Data'])
-wydatki_miesiac_kategoria = do_liniowego.groupby([do_liniowego['Data'].dt.strftime('%Y-%m'), 'Kategoria'])['Kwota'].sum().unstack()
+do_liniowego_2['Data'] = pd.to_datetime(do_liniowego_2['Data'])
+wydatki_miesiac_kategoria = do_liniowego_2.groupby([do_liniowego_2['Data'].dt.strftime('%Y-%m'), 'Kategoria'])['Kwota'].sum().unstack()
 wydatki_miesiac_kategoria.plot(kind='bar', figsize=(12, 8))
 plt.title('Wydatki w poszczególnych kategoriach w każdym miesiącu')
 plt.xlabel('Miesiąc')
 plt.ylabel('Kwota')
 plt.savefig('Wykres_wydatki_w_miesiącu.png')
 #nowy df do wykresu kołowego #4
-do_kolowego = do_liniowego.groupby('Kategoria')['Kwota'].sum()
-
+do_kolowego = do_liniowego_2.groupby('Kategoria')['Kwota'].sum()
 # Tworzenie wykresu kołowego
 plt.figure(figsize=(8, 8))
 plt.pie(do_kolowego, labels=do_kolowego.index, autopct='%1.1f%%')
 plt.title('Wydatki na poszczególne kategorie w całym roku')
 plt.savefig('Wydatki_kolowy_calyrok.png')
+
 #znowu kazało przekształcić
-do_liniowego['Data'] = pd.to_datetime(do_liniowego['Data'])
+do_liniowego['Data'] = pd.to_datetime(do_liniowego_2['Data'])
 
 # Pobranie daty od użytkownika
 rok = input("Podaj rok dla którego chcesz zobaczyć dane (np. 2023): ")
@@ -70,7 +89,7 @@ czy_sam_rok = input("Czy chcesz zobaczyć dane z konkretnego miesiąca Y/N?: ")
 
 if czy_sam_rok.lower() in ['n', 'no']:
     wybrany_rok = f"{rok}"
-    dane_wybranego_roku = do_liniowego[do_liniowego['Data'].dt.strftime('%Y') == wybrany_rok]
+    dane_wybranego_roku = do_liniowego_2[do_liniowego_2['Data'].dt.strftime('%Y') == wybrany_rok]
 
     # Sprawdzenie, czy dane dla wybranego roku istnieją
     if dane_wybranego_roku.size == 0:
@@ -78,7 +97,7 @@ if czy_sam_rok.lower() in ['n', 'no']:
     else:
         suma_wydatkow_kategorie = dane_wybranego_roku.groupby('Kategoria')['Kwota'].sum()
 
-        # Tworzenie wykresu kołowego #5
+        # Tworzenie wykresu #5
         plt.figure(figsize=(8, 8))
         plt.pie(suma_wydatkow_kategorie, labels=suma_wydatkow_kategorie.index, autopct='%1.1f%%')
         plt.title(f'Wydatki na poszczególne kategorie w roku {wybrany_rok}')
@@ -99,7 +118,6 @@ else:
         plt.pie(suma_wydatkow_kategorie, labels=suma_wydatkow_kategorie.index, autopct='%1.1f%%')
         plt.title(f'Wydatki na poszczególne kategorie w {wybrany_rok_miesiac}')
         plt.savefig('Wydatki_rokmiesiac_userdefined.png')
-
 
 #utworzone kategorie oraz ich słowa klucz
 kategorie = {
